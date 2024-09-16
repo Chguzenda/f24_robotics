@@ -109,8 +109,7 @@ class RandomWalk(Node):
                 self.publisher_.publish(self.cmd)
                 self.turtlebot_moving = False
                 self.get_logger().info('Stopping')
-                self.cmd.linear.x = -0.3
-                #return
+                return
         elif front_lidar_min < LIDAR_AVOID_DISTANCE:
                 self.cmd.linear.x = 0.07 
                 if (right_lidar_min > left_lidar_min):
