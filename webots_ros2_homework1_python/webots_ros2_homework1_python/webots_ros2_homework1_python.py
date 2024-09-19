@@ -136,7 +136,9 @@ class RandomWalk(Node):
         else:
             self.stall = False
         if self.stall == True:
-           self.get_logger().info('Stall reported')
+           self.get_logger().info('Stall reported, attempting to correct')
+           for x in range(10):
+               self.cmd.linear.x = 0.1
         
         # Display the message on the console
         self.get_logger().info('Publishing: "%s"' % self.cmd)
