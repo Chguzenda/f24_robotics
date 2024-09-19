@@ -46,7 +46,7 @@ class RandomWalk(Node):
         timer_period = 0.5
         self.pose_saved=''
         self.cmd = Twist()
-        (greatestX,greatestZ) = (0,0)
+        (greatestX,greatestY) = (0,0)
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
 
@@ -73,6 +73,7 @@ class RandomWalk(Node):
         (posx, posy, posz) = (position.x, position.y, position.z)
         (qx, qy, qz, qw) = (orientation.x, orientation.y, orientation.z, orientation.w)
         self.get_logger().info('self position: {},{},{}'.format(posx,posy,posz));
+        self.get_logger().info('furthest position: {},{}'.format(greatestX,greatestY));
         # similarly for twist message if you need
         self.pose_saved=position
         
@@ -125,7 +126,7 @@ class RandomWalk(Node):
             self.cmd.linear.z = 0.0
             self.publisher_.publish(self.cmd)
             self.turtlebot_moving = True
-        if (hypot(greatestX,greatestZ) < hypot(position.x,position.z)):
+        if (hypot(greatestX,greatestY) < hypot(position.x,position.y)):
             greatestX = position.x
             greatestZ = position.z
 
