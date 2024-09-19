@@ -147,6 +147,7 @@ class RandomWalk(Node):
                self.cmd.linear.x = -0.1
                self.cmd.linear.z = 0.0
                self.publisher_.publish(self.cmd)
+               self.stall = False
         
         # Display the message on the console
         self.get_logger().info('Publishing: "%s"' % self.cmd)
