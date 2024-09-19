@@ -85,12 +85,6 @@ class RandomWalk(Node):
            #self.stall = True
         #else:
            #self.stall = False
-        diffX = math.fabs(self.pose_saved.x- position.x)
-        diffY = math.fabs(self.pose_saved.y - position.y)
-        if (diffX < 0.0001 and diffY < 0.0001):
-           self.stall = True
-        else:
-            self.stall = False
            
         return None
         
@@ -111,13 +105,16 @@ class RandomWalk(Node):
         #self.get_logger().info('front scan slice: "%s"'%  min(front_lidar_samples))
         #self.get_logger().info('right scan slice: "%s"'%  min(right_lidar_samples))
 
+        (posx, posy, posz) = (position.x, position.y, position.z)
+        
         if front_lidar_min < SAFE_STOP_DISTANCE:
             if self.turtlebot_moving == True:
-                self.cmd.linear.x = 0.0 
+                self.cmd.linear.x = -1.0 
                 self.cmd.angular.z = 0.0 
                 self.publisher_.publish(self.cmd)
-                self.turtlebot_moving = False
-                self.get_logger().info('Stopping')
+                #self.turtlebot_moving = False
+                #self.get_logger().info('Stopping')
+                self.get_logger().info('Reversing')
                 return
         elif front_lidar_min < LIDAR_AVOID_DISTANCE:
                 self.cmd.linear.x = 0.07 
