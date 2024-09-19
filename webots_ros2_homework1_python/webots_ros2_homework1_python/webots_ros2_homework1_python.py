@@ -140,6 +140,7 @@ class RandomWalk(Node):
            self.get_logger().info('Stall reported, attempting to correct')
            self.cmd.linear.x = -1.0
            self.cmd.linear.z = 0.0
+           self.cmd.angular.z = 0.0 
            self.publisher_.publish(self.cmd)
            self.turtlebot_moving = True
            self.stall = False
