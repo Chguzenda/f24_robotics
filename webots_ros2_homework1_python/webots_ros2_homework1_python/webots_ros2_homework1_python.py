@@ -143,11 +143,11 @@ class RandomWalk(Node):
         
         if self.stall == True:
            self.get_logger().info('Stall reported, attempting to correct')
-           for x in range(10):
-               self.cmd.linear.x = -0.1
-               self.cmd.linear.z = 0.0
-               self.publisher_.publish(self.cmd)
-               self.stall = False
+           self.cmd.linear.x = -1.0
+           self.cmd.linear.z = 0.0
+           self.publisher_.publish(self.cmd)
+           self.turtlebot_moving = True
+           self.stall = False
         
         # Display the message on the console
         self.get_logger().info('Publishing: "%s"' % self.cmd)
