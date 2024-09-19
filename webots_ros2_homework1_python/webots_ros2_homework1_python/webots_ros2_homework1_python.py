@@ -133,7 +133,7 @@ class RandomWalk(Node):
             self.cmd.linear.z = 0.0
             self.publisher_.publish(self.cmd)
             self.turtlebot_moving = True
-        if (hypot(self.greatestX,self.greatestY) < hypot(position.x,position.y)):
+        if (math.hypot(self.greatestX,self.greatestY) < math.hypot(position.x,position.y)):
             self.greatestX = position.x
             self.greatestZ = position.z
 
