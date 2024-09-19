@@ -104,8 +104,6 @@ class RandomWalk(Node):
         #self.get_logger().info('left scan slice: "%s"'%  min(left_lidar_samples))
         #self.get_logger().info('front scan slice: "%s"'%  min(front_lidar_samples))
         #self.get_logger().info('right scan slice: "%s"'%  min(right_lidar_samples))
-
-        (posx, posy, posz) = (position.x, position.y, position.z)
         
         if front_lidar_min < SAFE_STOP_DISTANCE:
             if self.turtlebot_moving == True:
