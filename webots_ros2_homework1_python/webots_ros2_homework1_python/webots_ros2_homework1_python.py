@@ -46,7 +46,8 @@ class RandomWalk(Node):
         timer_period = 0.5
         self.pose_saved=''
         self.cmd = Twist()
-        (greatestX,greatestY) = (0,0)
+        self.greatestX = 0
+        self.greatestY =0
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
 
