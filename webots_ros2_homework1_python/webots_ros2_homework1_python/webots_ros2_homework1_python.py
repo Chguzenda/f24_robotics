@@ -46,6 +46,7 @@ class RandomWalk(Node):
         timer_period = 0.5
         self.pose_saved=''
         self.cmd = Twist()
+        (greatestX,greatestZ) = (0,0)
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
 
@@ -124,7 +125,9 @@ class RandomWalk(Node):
             self.cmd.linear.z = 0.0
             self.publisher_.publish(self.cmd)
             self.turtlebot_moving = True
-            
+        if (hypot(greatestX,greatestZ) < hypot(posx,posz)):
+            greatestX = posx
+            greatestZ = posz
 
         self.get_logger().info('Distance of the obstacle : %f' % front_lidar_min)
         self.get_logger().info('I receive: "%s"' %
