@@ -129,6 +129,10 @@ class RandomWalk(Node):
         self.get_logger().info('Distance of the obstacle : %f' % front_lidar_min)
         self.get_logger().info('I receive: "%s"' %
                                str(self.odom_data))
+        if (diffX < 0.0001 and diffY < 0.0001):
+           self.stall = True
+        else:
+            self.stall = False
         if self.stall == True:
            self.get_logger().info('Stall reported')
         
