@@ -74,7 +74,7 @@ class RandomWalk(Node):
         (posx, posy, posz) = (position.x, position.y, position.z)
         (qx, qy, qz, qw) = (orientation.x, orientation.y, orientation.z, orientation.w)
         self.get_logger().warn('self position: {},{},{}'.format(posx,posy,posz))
-        self.get_logger().info('furthest position: {},{}'.format(posx,posy));
+        self.get_logger().info('furthest position: {},{}'.format(self.greatestX,self.greatestY));
         # similarly for twist message if you need
         self.pose_saved=position
         
