@@ -48,6 +48,7 @@ class RandomWalk(Node):
         self.cmd = Twist()
         self.greatestX = 0
         self.greatestY =0
+        self.totalDistance = 0
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
 
@@ -108,9 +109,11 @@ class RandomWalk(Node):
         if front_lidar_min < SAFE_STOP_DISTANCE:
             if self.turtlebot_moving == True:
                 self.cmd.linear.x = -0.5 
+                #if obstacle is too close, back up
                 self.cmd.angular.z = 0.0 
                 self.publisher_.publish(self.cmd)
                 #self.turtlebot_moving = False
+                self.totalDistance = self.totalDistance + 0.5
                 #self.get_logger().info('Stopping')
                 self.get_logger().info('Reversing')
                 return
@@ -122,9 +125,11 @@ class RandomWalk(Node):
                    self.cmd.angular.z = 0.1
                 self.publisher_.publish(self.cmd)
                 self.get_logger().info('Turning')
+                self.totalDistance = self.totalDistance + 0.07
                 self.turtlebot_moving = True
         else:
             self.cmd.linear.x = 0.1
+            self.totalDistance = self.totalDistance + 0.1
             self.cmd.linear.z = 0.0
             self.cmd.angular.z = 0.0 
             self.publisher_.publish(self.cmd)
