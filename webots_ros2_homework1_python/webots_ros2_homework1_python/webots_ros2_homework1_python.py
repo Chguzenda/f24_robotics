@@ -137,7 +137,7 @@ class RandomWalk(Node):
             self.turtlebot_moving = True
         if (math.hypot(self.greatestX,self.greatestY) < math.hypot(self.pose_saved.x,self.pose_saved.y)):
             self.greatestX = self.pose_saved.x
-            self.greatestY = self.pose_saved.z
+            self.greatestY = self.pose_saved.y
 
         self.get_logger().info('Distance of the obstacle : %f' % front_lidar_min)
         self.get_logger().info('I receive: "%s"' %
