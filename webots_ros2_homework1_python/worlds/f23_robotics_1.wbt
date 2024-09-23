@@ -55,7 +55,7 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 TurtleBot3Burger {
-   translation 3 0.5 .05
+   translation 6 7 .05
    rotation 0 0 1 -1.57
 
   controller "<extern>"
